@@ -44,21 +44,34 @@ class stringCalulationClass
             return 0;
         }
         //case 2 solving
-        else if(Numbers.size()==1)  // if only one element is there in the String the directly returning it
-        {
-            return Numbers[0];
-        }
+        // else if(Numbers.size()==1)  // if only one element is there in the String the directly returning it
+        // {
+        //     return Numbers[0];
+        // }
         //case 3 solving
-        else if(Numbers.size()==2)                       // Adding the 2 Numbers in the string
-        {
-            return Numbers[0]+Numbers[1];
-        }
+        // else if(Numbers.size()==2)                       // Adding the 2 Numbers in the string
+        // {
+        //     return Numbers[0]+Numbers[1];
+        // }
         //case 4 and 5
         else{
             int sum=0;
             for(int num:Numbers) //looping to all the element i.e. unknown amount of elements 
             {
-                sum+=num;
+                try
+                {
+                    /* code */
+                    if(num<0)
+                    {
+                        throw num;
+                    }
+                    sum += num;
+                }
+                catch(int num)
+                {
+                    cout <<"Negatives not allowed ";
+                    return num; 
+                }
             }
             return sum;  //returning sum of all possible elements
 
@@ -76,22 +89,25 @@ int main()
     // string InputString;
     // cin>>InputString;
 
-    // Testing the code for sample test cases 1, 2, 3
+    // Testing the code for sample tests
+    //cases 1
     cout << Calculator.CalculateString("") << endl;
+    // cases 2
     cout << Calculator.CalculateString("123") << endl;
+    // cases 3
     cout << Calculator.CalculateString("123,23") << endl;
 
     // Adding Test Cases for Case 4
     string Str = "123,23,23,43,54,232";
-    cout << Str << " = " << Calculator.CalculateString(Str) << endl;
+    cout << Calculator.CalculateString(Str) << endl;
 
     // Adding Test Cases for Case 5
     string Str1 = "123,a,b";
-    cout << Str1 << " = " << Calculator.CalculateString(Str1) << endl;
+    cout << Calculator.CalculateString(Str1) << endl;
 
-    // Adding Test Cases for Case 6
+    // Adding Test Cases for Case 6 for a negative number
     string Str2 = "123,-2";
-    cout << Str2 << " = " << Calculator.CalculateString(Str2) << endl;
+    cout << Calculator.CalculateString(Str2) << endl;
 
     return 0;
 }

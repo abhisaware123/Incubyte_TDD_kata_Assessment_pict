@@ -9,7 +9,7 @@ class stringCalulationClass
 
     int CalculateString(string givenString)
     {
-        
+
         string s1="";
         int sizeOfString=givenString.size();
         vector<int>Numbers;
@@ -19,10 +19,8 @@ class stringCalulationClass
 
         for(index=0;index<sizeOfString;index++)
         {
-            if(givenString[index]==',')
-            {
+            if(givenString[index]==',') {
                 Numbers.push_back(stoi(FirstPart));
-                cout<<FirstPart<<" -> ";
                 FirstPart="";
 
             }
@@ -30,8 +28,26 @@ class stringCalulationClass
                 FirstPart+=givenString[index];
             }
         }
-        if(FirstPart.size())
+        if(FirstPart.size()) {
                 Numbers.push_back(stoi(FirstPart));
+        }
+
+        //Case 1 Solving 
+        if(Numbers.size()==0)       //if no number found in the string then return 0
+        {
+            return 0;
+        }
+        //case 2 solving
+        else if(Numbers.size()==1)  // if only one element is there in the String the directly returning it
+        {
+            return Numbers[0];
+        }
+        //case 3 solving
+        else                        // Adding the 2 Numbers in the string
+        {
+            return Numbers[0]+Numbers[1];
+        }
+
         return Numbers.size();
 
     }

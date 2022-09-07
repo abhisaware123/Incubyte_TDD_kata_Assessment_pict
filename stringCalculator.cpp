@@ -53,12 +53,11 @@ class stringCalulationClass
         {
             return Numbers[0]+Numbers[1];
         }
+        //case 4 and 5
         else{
             int sum=0;
             for(int num:Numbers) //looping to all the element i.e. unknown amount of elements 
             {
-                cout<<num<<" : ";
-                
                 sum+=num;
             }
             return sum;  //returning sum of all possible elements
@@ -77,7 +76,7 @@ int main()
     // string InputString;
     // cin>>InputString;
 
-    // Testing the code for sample test cases
+    // Testing the code for sample test cases 1, 2, 3
     cout << Calculator.CalculateString("") << endl;
     cout << Calculator.CalculateString("123") << endl;
     cout << Calculator.CalculateString("123,23") << endl;
@@ -89,6 +88,10 @@ int main()
     // Adding Test Cases for Case 5
     string Str1 = "123,a,b";
     cout << Str1 << " = " << Calculator.CalculateString(Str1) << endl;
+
+    // Adding Test Cases for Case 6
+    string Str2 = "123,-2";
+    cout << Str2 << " = " << Calculator.CalculateString(Str2) << endl;
 
     return 0;
 }

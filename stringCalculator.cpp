@@ -20,12 +20,21 @@ class stringCalulationClass
         for(index=0;index<sizeOfString;index++)
         {
             if(givenString[index]==',') {
+                
                 Numbers.push_back(stoi(FirstPart));
                 FirstPart="";
 
             }
-            else {
-                FirstPart+=givenString[index];
+            else if (givenString[index] >= 'a' and givenString[index]<='z')
+            {
+                if (!isdigit(FirstPart[0]))
+                {
+                    Numbers.push_back((FirstPart[0] - 'a') + 1);
+                }
+            }   
+            else
+            {
+                FirstPart += givenString[index];
             }
         }
         if(FirstPart.size()) {
@@ -49,7 +58,7 @@ class stringCalulationClass
         }
         else{
             int sum=0;
-            for(auto num:Numbers) //looping to all the element i.e. unknown amount of elements 
+            for(int num:Numbers) //looping to all the element i.e. unknown amount of elements 
             {
                 sum+=num;
             }
@@ -76,7 +85,11 @@ int main()
 
     // Adding Test Cases for Case 4
     string Str = "123,23,23,43,54,232";
-     cout << Str <<" = " << Calculator.CalculateString("123,23,23,43,54,232") << endl;
+    cout << Str << " = " << Calculator.CalculateString(Str) << endl;
+
+    // Adding Test Cases for Case 5
+    string Str1 = "123,a,b";
+    cout << Str << " = " << Calculator.CalculateString(Str1) << endl;
 
     return 0;
 }

@@ -43,12 +43,19 @@ class stringCalulationClass
             return Numbers[0];
         }
         //case 3 solving
-        else                        // Adding the 2 Numbers in the string
+        else if(Numbers.size()==2)                       // Adding the 2 Numbers in the string
         {
             return Numbers[0]+Numbers[1];
         }
+        else{
+            int sum=0;
+            for(auto num:Numbers) //looping to all the element i.e. unknown amount of elements 
+            {
+                sum+=num;
+            }
+            return sum;  //returning sum of all possible elements
 
-        return Numbers.size();
+        }
 
     }
 };

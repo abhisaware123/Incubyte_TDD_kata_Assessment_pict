@@ -69,7 +69,9 @@ class stringCalulationClass
             {
                 for (int num : Numbers) // looping to all the element i.e. unknown amount of elements
                 {
-                    sum += num;
+                    if(num<=1000)
+                        sum += num;
+
                 }
                 return sum;
             }
@@ -79,7 +81,7 @@ class stringCalulationClass
                         if(num<0) {
                             throw num;
                         }
-                        sum += num;
+                        
                     }
                     catch(int num) {
                         cout <<"Negatives not allowed ";
@@ -89,12 +91,14 @@ class stringCalulationClass
                 return sum;
             }
             else {      // count of Negative Number is greater than 1 means mltiple negative exist
+                cout <<"Multiple Negatives Found in the string ";
                 for (int num : Numbers) {
                     try {
                         if (num < 0) {
                             throw num;
                         }
-                        sum += num;
+                        if (num <= 1000) // ignore greater than 1000
+                            sum += num;
                     }
                     catch (int num) {
                         cout << num <<" , ";
@@ -139,6 +143,10 @@ int main()
     // Adding Test Cases for Case 6 for a negative number
     string Str3 = "-123,-2,-23";
     cout << Calculator.CalculateString(Str3) << endl;
+
+    // Adding Test Cases for Case 7 for ignoring numbers greater than 1000;
+    string Str4 = "1002,23,a,-23,-9";
+    cout << Calculator.CalculateString(Str4) << endl;
 
     return 0;
 }

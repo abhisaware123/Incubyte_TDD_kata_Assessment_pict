@@ -67,6 +67,10 @@ int main()
     cout << Calculator.CalculateString("123") << endl;
     cout << Calculator.CalculateString("123,23") << endl;
 
+    // Adding Test Cases for Case 4
+    string Str = "123,23,23,43,54,232";
+     cout << Str <<" = " << Calculator.CalculateString("123,23,23,43,54,232") << endl;
+
     return 0;
 }
 

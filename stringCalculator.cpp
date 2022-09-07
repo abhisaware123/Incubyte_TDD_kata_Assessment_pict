@@ -11,18 +11,23 @@ class stringCalulationClass
     {
 
         string s1="";
-        int sizeOfString=givenString.size();
+        int n=givenString.size();
         vector<int>Numbers;
-        // lets divide the string into equal parts possible for calculation
-        int index=0;
-        string FirstPart="",SecondPart="";
+        string firstNumericString="";
+        int countOfNegative=0;
 
-        for(index=0;index<sizeOfString;index++)
+        for(int index=0 ; index<n ; index++ )
         {
             if(givenString[index]==',') {
-                if(FirstPart.size())
-                    Numbers.push_back(stoi(FirstPart));
-                FirstPart="";
+                if(firstNumericString.size())
+                {
+                    int value = stoi(firstNumericString);
+                    if(value<0) {
+                        countOfNegative++;
+                    }   
+                    Numbers.push_back(value);
+                }
+                firstNumericString="";
 
             }
             else if (givenString[index] >= 'a' and givenString[index]<='z')
@@ -31,11 +36,15 @@ class stringCalulationClass
             }   
             else
             {
-                FirstPart += givenString[index];
+                firstNumericString += givenString[index];
             }
         }
-        if(FirstPart.size()) {
-                Numbers.push_back(stoi(FirstPart));
+        if(firstNumericString.size()) {
+            int value = stoi(firstNumericString);
+            if (value < 0) {
+                countOfNegative++;
+            }
+            Numbers.push_back(value);
         }
 
         //Case 1 Solving 
@@ -56,25 +65,43 @@ class stringCalulationClass
         //case 4 and 5
         else{
             int sum=0;
-            for(int num:Numbers) //looping to all the element i.e. unknown amount of elements 
+            if(countOfNegative==0) //No Negative in String 
             {
-                try
+                for (int num : Numbers) // looping to all the element i.e. unknown amount of elements
                 {
-                    /* code */
-                    if(num<0)
-                    {
-                        throw num;
-                    }
                     sum += num;
                 }
-                catch(int num)
-                {
-                    cout <<"Negatives not allowed ";
-                    return num; 
-                }
+                return sum;
             }
-            return sum;  //returning sum of all possible elements
-
+            else if(countOfNegative==1) {   // a Negative Element is Found in the string
+                for(int num:Numbers) {
+                    try {
+                        if(num<0) {
+                            throw num;
+                        }
+                        sum += num;
+                    }
+                    catch(int num) {
+                        cout <<"Negatives not allowed ";
+                        return num; 
+                    }
+                }
+                return sum;
+            }
+            else {      // count of Negative Number is greater than 1 means mltiple negative exist
+                for (int num : Numbers) {
+                    try {
+                        if (num < 0) {
+                            throw num;
+                        }
+                        sum += num;
+                    }
+                    catch (int num) {
+                        cout << num <<" , ";
+                    }
+                }
+                return sum;
+            }
         }
 
     }
@@ -108,6 +135,10 @@ int main()
     // Adding Test Cases for Case 6 for a negative number
     string Str2 = "123,-2";
     cout << Calculator.CalculateString(Str2) << endl;
+
+    // Adding Test Cases for Case 6 for a negative number
+    string Str3 = "-123,-2,-23";
+    cout << Calculator.CalculateString(Str3) << endl;
 
     return 0;
 }
